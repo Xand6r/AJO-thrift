@@ -1,6 +1,5 @@
-# blockchain-developer-bootcamp-final-project
-
 **Cooperative Contract Example Workflow**
+This Project involves the development of a cooperative society on the blockchain, in which several parties pool resources together , the resources are then staked, and funds are given out to each member on a monthly basis.
 
 1. Users will have to register themselves somehow on the contract
 
