@@ -5,7 +5,7 @@
 pragma solidity ^0.8.3;
 // import "hardhat/console.sol";
 
-contract Contribution {
+contract Cooperative {
     // ----- define the different enums which we are going to be using
     enum TransactionType {
         CLAIM,
@@ -203,7 +203,7 @@ contract Contribution {
         // initialise variables from constructor
         maxUsers = _users; //this would be a oarameter to the constructor eventually
         frequencyInDays = _frequencyInDays; //this means the frequency at which contributions are to be made
-        contributionAmount = _contributionInEther * 1 ether; //this would be a parameter to the constructor eventually from the factory contract
+        contributionAmount = _contributionInEther ; //this would be a parameter to the constructor eventually from the factory contract
         // initialise variables from constructor
 
         //initialise state variables

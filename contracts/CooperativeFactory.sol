@@ -5,17 +5,17 @@ pragma solidity ^0.8.3;
 import "./Cooperative.sol";
 // import "hardhat/console.sol";
 
-contract ContributionFactory{
+contract CooperativeFactory{
 
     address[] public createdCooperatives;
-    mapping(address => address) creatorToCooperative;
+    mapping(address => address) public creatorToCooperative;
 
     function createCooperative(
         uint _maxUsers,
         uint _contributionInEther,
         uint _frequencyInDays
     ) public returns(address){
-        address newCooperative = address(new Contribution(
+        address newCooperative = address(new Cooperative(
             _maxUsers, _contributionInEther, _frequencyInDays
         ));
         createdCooperatives.push(newCooperative);
