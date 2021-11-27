@@ -1,11 +1,12 @@
 /// @author Shuaibu Alexander
 /// @title A cooperative deployer contract, this contract helps us to deploy and keep track of several instances of the cooperative contract
 // SPDX-License-Identifier: GPL-3.0
+import "@openzeppelin/contracts/access/Ownable.sol";
 pragma solidity ^0.8.3;
 import "./Cooperative.sol";
-// import "hardhat/console.sol";
 
-contract CooperativeFactory{
+
+contract CooperativeFactory is Ownable{
 
     address[] public createdCooperatives;
     mapping(address => address) public creatorToCooperative;
