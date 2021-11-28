@@ -58,12 +58,13 @@ contract("Cooperative",function(accounts){
             await cooperative.inviteUser(accounts[i+1],{ from: accounts[i] });
             // cooperative = await Cooperative.inviteUser({ from: accounts[0] });
         }
-        const claimer = await cooperative.users.call(0);
+        const claimer = await cooperative.users.call(0); //after initialisation, the claimer would always be the first user
         // make everyone apart from the claimer contribute
         for(let i=0;i<maxUsers;i++){
             if(accounts[i] == claimer) continue;
             await cooperative.deposit({ from: accounts[i], value: "10000000000000000000" });
         }
+        // make the claimer
         await cooperative.claim({from: claimer});
 
         assert.equal(claimer, accounts[0])
