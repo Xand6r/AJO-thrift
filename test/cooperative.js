@@ -25,10 +25,47 @@ contract("Cooperative",function(accounts){
         assert.equal(coContributionInEther.toString(), contributionInEther, "contributionInEther on contract and the one passed into the factory differ");
     });
 
-    it("owner variable should be the account which deployed it", async() => {
-
+    it("owner variable should be the account which deployed it", async () => {
         const contractOwner = await cooperative.owner.call();
-
         assert.equal(contractOwner, accounts[0], "The owner variable is not the account which created the contract");
+    });
+
+    it("Cooperative status should be marked as initialised", async () => {
+        const electionStatus = await cooperative.status.call();
+        assert.equal(electionStatus, 0, "Cooperative is not marked as initialised");
+    });
+
+    it("Can invite a user to the cooperative", async () => {
+        await cooperative.inviteUser(accounts[1]);
+        const whoInvitedNewMember = await cooperative.invitedBy.call(accounts[1]);
+
+        assert.equal(whoInvitedNewMember, accounts[0], "Cannot invite a new user to the cooperative");
+    });
+
+    it("Can deposit to contribution pool", async () => {
+        await cooperative.canClaimPool.call();
+        for(let i = 0;i<maxUsers - 1;i++){
+            await cooperative.inviteUser(accounts[i+1],{ from: accounts[i] });
+            // cooperative = await Cooperative.inviteUser({ from: accounts[0] });
+        }
+        await cooperative.deposit({ from: accounts[maxUsers-1], value: "10000000000000000000" });
+    });
+
+    it("Can claim contribution pool when in turn", async () => {
+        await cooperative.canClaimPool.call();
+        // invite eveyone to the election so it can be marked as started
+        for(let i = 0;i<maxUsers - 1;i++){
+            await cooperative.inviteUser(accounts[i+1],{ from: accounts[i] });
+            // cooperative = await Cooperative.inviteUser({ from: accounts[0] });
+        }
+        const claimer = await cooperative.users.call(0);
+        // make everyone apart from the claimer contribute
+        for(let i=0;i<maxUsers;i++){
+            if(accounts[i] == claimer) continue;
+            await cooperative.deposit({ from: accounts[i], value: "10000000000000000000" });
+        }
+        await cooperative.claim({from: claimer});
+
+        assert.equal(claimer, accounts[0])
     });
 });
