@@ -13,9 +13,11 @@ $padding-x: 6.0625rem;
     padding-bottom: 6.8125rem;
     padding-left: $padding-x;
     padding-right: $padding-x;
-    background-size: cover;
     background-position-y: -86px; //do this to accomodate the navbar
-    background-image: url('../../../../assets/landingbackground.png'), linear-gradient($starting-gradient, $starting-gradient);
+    background-image: url('../../../../assets/group.svg'), linear-gradient($starting-gradient, $starting-gradient);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-blend-mode: darken;
 
     @media (max-width: $lg-breakpoint) {
         background-image: url('../../../../assets/plainbg.png'), linear-gradient($starting-gradient, $starting-gradient);
