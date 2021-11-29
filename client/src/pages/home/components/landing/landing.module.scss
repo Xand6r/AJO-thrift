@@ -57,10 +57,13 @@ $padding-x: 6.0625rem;
             line-height: 22px;
             margin-bottom: 30px;
         }
+        i{
+            color: $dark-green;
+        }
     }
     h3{
         color: $dark-green;
-        margin-bottom: 1.23rem;
+        margin-bottom: 0.7rem;
         line-height: 4.125rem;
 
         @media (max-width: $sm-breakpoint) {

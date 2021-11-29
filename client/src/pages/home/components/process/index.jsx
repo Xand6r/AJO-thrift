@@ -13,7 +13,7 @@ export default function Index() {
             <div className={styles.process__header}>
                 <p>OUR PROCESS</p>
                 <h2>
-                    Inspired by nature, driven by science
+                    Inspired by peers, driven by funds
                 </h2>
             </div>
 
@@ -21,29 +21,28 @@ export default function Index() {
                 <div className={styles.tab__group}>
                     <Tab
                         ImageItem={Nature}
-                        heading="Inspired by nature"
-                        text="We believe that nature has a lot to offer when it comes to beauty. So through partnerships with local communities across Africa, we are able to utilize natural ingredients to make products that are nourishing."
+                        heading="Inspired by decentralisation"
+                        text="Start by creating a cooperative on this page and specifying several characteristics of the cooperative"
                     />
                     <div className={styles.vertical__line} />
                     <Tab
-                        ImageItem={Beauty}
-                        heading="Beauty made to last"
-                        text="Quick fixes never last. So at Springsentia, we are committed to making products that deliver gradual but long-lasting results without compromise."
+                        ImageItem={Formulation}
+                        heading="Driven by peers"
+                        text="The next step is to invite peers to your cooperative, participation is by invitation only and each member is entitled to only one invitation."
                     />
                 </div>
                 <div className={styles.horizontal__line} />
                 <div className={styles.tab__group}>
                     <Tab
-                        ImageItem={Formulation}
-                        heading="Simple formulations"
-                        text="We use potent and multifunctional ingredients to make simple formulations that deliver effective results that your hair and skin will love. We focus on what we put into the products rather than
-                        what we leave out."
+                        ImageItem={Beauty}
+                        heading="Facilitated by funds"
+                        text="After the cooperative has reached its member limit, it is then kicked off and one random member is assigned a 'claimer' status. Everyone except the claimer named 'depositors' makes a deposit within the specified time period."
                     />
                     <div className={styles.vertical__line} />
                     <Tab
                         ImageItem={Science}
-                        heading="Driven by science"
-                        text="Quick fixes never last. So at Springsentia, we are committed to making products that deliver gradual but long-lasting results without compromise."
+                        heading="Completed by claiming"
+                        text="When all 'depositors' have made a deposit, the 'claimer' then claims all the funds in the pool, a new 'claimer' is assigned and then we repeat step 3, until every member have attained 'claimer' status and the cooperative is marked as closed."
                     />
                 </div>
             </div>

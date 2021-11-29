@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from '../../assets/logo.svg';
 import styles from './navbar.module.scss';
 
 export default function Index() {
@@ -7,11 +6,11 @@ export default function Index() {
         <nav className={styles.header}>
             {/* logo on big screens */}
             <div className={styles.header__logo__big}>
-                <img alt="logo" src={Logo}/>
+                <h2>THE COOPERATIVE</h2>
             </div>
             {/* logo on small screens */}
             <div className={styles.header__logo__small}>
-                <img alt="logo" src={Logo}/>
+                <h5>AJO</h5>
             </div>
         </nav>
     )

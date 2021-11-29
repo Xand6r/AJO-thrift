@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Darker+Grotesque:wght@700&display=swap');
 
 .header{
     width: 100%;
@@ -12,6 +13,10 @@
 .header__logo__big{
     margin: 0 auto;
     width: fit-content;
+    h2{
+        color: $dark-green;
+        font-family: 'Darker Grotesque', sans-serif;
+    }
 
     @media (max-width: $sm-breakpoint) {
         display: none;
@@ -23,6 +28,10 @@
     margin: 0 auto;
     width: fit-content;
     display: none;
+    h5{
+        color: $dark-green;
+        font-family: 'Courgette', cursive;
+    }
 
     @media (max-width: $sm-breakpoint) {
         display: inherit;
