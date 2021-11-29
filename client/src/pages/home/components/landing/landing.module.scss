@@ -1,0 +1,104 @@
+@import "styles/variables.scss";
+
+// define variables
+$starting-gradient: #D8DCCD;
+$ending-gradient: #EBEEE3;
+$height: 722px;
+$padding-x: 6.0625rem;
+// define variables
+
+
+.landing__cover{
+    padding-top: 11.9275rem;
+    padding-bottom: 6.8125rem;
+    padding-left: $padding-x;
+    padding-right: $padding-x;
+    background-size: cover;
+    background-position-y: -86px; //do this to accomodate the navbar
+    background-image: url('../../../../public/images/landingbackground.png'), linear-gradient($starting-gradient, $starting-gradient);
+
+    @media (max-width: $lg-breakpoint) {
+        background-image: url('../../../../public/images/plainbg.png'), linear-gradient($starting-gradient, $starting-gradient);
+    }
+
+    @media (max-width: $md-breakpoint) {
+        padding-top: 11.9275rem;
+        padding-bottom: 6.8125rem;
+    }
+
+    @media (max-width: $sm-breakpoint) {
+        padding-top: 4.92rem;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 0;
+    }
+}
+
+.landing__content{
+    h1, h4, h3{
+        font-weight: normal;
+    }
+    h1{
+        margin-bottom: 1.9375rem;
+        color: $dark-green;
+        line-height: 4.125rem;
+        @media (max-width: $sm-breakpoint) {
+            line-height: 40px;
+            margin-bottom: 24px;
+        }
+    }
+    h4{
+        font-family: 'Helvetica Neue';
+        margin-bottom: 3.375rem ;
+        max-width: 36.4rem;
+        line-height: 2.25rem;
+        @media (max-width: $sm-breakpoint) {
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 30px;
+        }
+    }
+    h3{
+        color: $dark-green;
+        margin-bottom: 1.23rem;
+        line-height: 4.125rem;
+
+        @media (max-width: $sm-breakpoint) {
+            font-size: 20px;
+            line-height: 66px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.input__group{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.77rem;
+    input{
+        transition: 300ms;
+        margin-right: 12px;
+        width: 23.1875rem;
+        border: 1px solid transparent;
+
+        &:hover{
+            border: 1px solid #999999;
+        }
+
+        &:focus{
+            border: 1px solid #014C37;
+            color: #014C37;
+        }
+    }
+
+    button{
+        transition: 300ms;
+        span{
+            font-weight: 500;
+            margin-right: 2rem;
+        }
+        &:hover{
+            background-color: #9CC193;
+        }
+    }
+}

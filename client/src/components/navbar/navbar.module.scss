@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+
+.header{
+    width: 100%;
+    background-color: $ionic-ivory;
+    padding: 1.5625rem 3.75rem;
+    @media (max-width: $sm-breakpoint) {
+        padding: 24px auto;
+    }
+}
+
+.header__logo__big{
+    margin: 0 auto;
+    width: fit-content;
+
+    @media (max-width: $sm-breakpoint) {
+        display: none;
+    }
+}
+
+
+.header__logo__small{
+    margin: 0 auto;
+    width: fit-content;
+    display: none;
+
+    @media (max-width: $sm-breakpoint) {
+        display: inherit;
+    }
+}

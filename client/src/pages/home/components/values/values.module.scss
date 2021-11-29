@@ -1,0 +1,127 @@
+@import 'styles/variables.scss';
+
+.values{
+    padding-top: 9.1875rem;
+    padding-right: 11.25rem;
+    padding-left: 5.5625rem;
+    padding-bottom: 9.625rem;
+    background-color: $dark-charcoal;
+    display: flex;
+    justify-content: space-between;
+
+    // on tablets
+    @media (max-width: $lg-breakpoint) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    @media (max-width: $sm-breakpoint) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.imagewrapper{
+    margin-top: -14.6125rem ;
+    margin-right: 25px;
+
+    // on tablets
+    @media (max-width: $lg-breakpoint) {
+        margin: 0;
+        margin-bottom: 50px;
+        object-fit: contain;
+
+        &>div{
+            width: 550px;
+            height: 663px;
+        }
+    }
+
+    // on tablets
+    @media (max-width: $md-breakpoint) {
+        margin: 0;
+        margin-bottom: 50px;
+
+        &>div{
+            width: 502px;
+
+        }
+    }
+
+    // on phones
+    @media (max-width: $sm-breakpoint) {
+        
+        &>div{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.textwrapper{
+    p{
+        font-weight: 500;
+        line-height: 1.25rem;
+        margin-bottom: 1.5625rem;
+        color: $dark-green;
+        font-family: 'Helvetica Neue';
+        @media (max-width: $sm-breakpoint) {
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+    }
+    h2{
+        font-weight: 400;
+        margin-bottom: 1.875rem;
+        color: $darker-charcoal;
+        @media (max-width: $sm-breakpoint) {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 39px;
+        }
+    }
+    h5{
+        max-width: 34.3125rem;
+        line-height: 1.875rem;
+        color: #707070;
+        font-family: 'Helvetica Neue';
+        @media (max-width: $sm-breakpoint) {
+            margin: 40px 30px 93px;
+            text-align: center;
+        }
+    }
+}
+
+.value_list{
+    display: flex;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    
+    @media (max-width: $sm-breakpoint) {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 auto;
+        gap: 26px;
+    }
+    div{
+        display: flex;
+        align-items: center;
+        margin-right:33px;
+        @media (max-width: $sm-breakpoint) {
+            margin-right: 0px;
+        }
+        &:last-of-type{
+            margin-right:0 ;
+        }
+        h4{
+            margin-left: 0.9375rem;
+            max-width: 34.3125rem;
+            color: $darker-charcoal;
+        }
+    }
+}

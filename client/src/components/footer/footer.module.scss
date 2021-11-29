@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+.footer{
+    background-color: $dark-green;
+    padding: 4.1875rem 7.125rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-family: 'Helvetica Neue';
+
+    @media (max-width: $sm-breakpoint) {
+        padding: 0;
+        padding-top: 42px;
+        padding-bottom: 32px;
+        flex-direction: column;
+        padding-left: 25px;
+        padding-right: 25px;
+        h6{
+            line-height: 28px;
+        }
+    }
+}
