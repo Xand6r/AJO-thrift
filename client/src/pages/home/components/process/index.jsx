@@ -22,7 +22,7 @@ export default function Index() {
                     <Tab
                         ImageItem={Nature}
                         heading="Inspired by decentralisation"
-                        text="Start by creating a cooperative on this page and specifying several characteristics of the cooperative"
+                        text="Start by connecting your metamask wallet, then creating a cooperative on this page and specifying several characteristics of the cooperative"
                     />
                     <div className={styles.vertical__line} />
                     <Tab

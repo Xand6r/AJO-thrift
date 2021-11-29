@@ -1,4 +1,5 @@
 import React from "react";
+import ConnectButton from "../../components/connect";
 import MetaMask from "../../assets/metamask.svg";
 import styles from "./navbar.module.scss";
 
@@ -19,21 +20,7 @@ export default function Index() {
       </div>
 
       {/* metmask icon */}
-      <div className={styles.metamask__window}>
-        <button
-          id={styles.walletButton}
-          className={walletButtomClass}
-        //   onClick={connectWalletPressed}
-        >
-          <img src={MetaMask} />
-          {/* {walletAddress.length > 0 ? (
-            formatAddress()
-          ) : (
-            <span>Connect Wallet</span>
-            )} */}
-          <span>Connect Wallet</span>
-        </button>
-      </div>
+      <ConnectButton />
       {/* metmask icon */}
     </nav>
   );
