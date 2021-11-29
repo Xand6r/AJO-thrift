@@ -1,16 +1,23 @@
+import {ethers} from 'ethers';
 import React, { useState } from "react";
-import ConnectButton from "../../../../components/connect";
 import { useWeb3React } from "@web3-react/core";
+
+import ConnectButton from "../../../../components/connect";
 
 import styles from "./landing.module.scss";
 
 export default function Index() {
-	const [state, handleSubmit] = useState("");
-	const { connector, activate, active, error, account } = useWeb3React();
+  const [loading, setLoading] = React.useState(false);
+
+	const { library, activate, active, error, account } = useWeb3React();
 	const submittedStyle = !active ? { visibility: "hidden" } : {};
 	const submittedText = !active
 		? "Please connect your wallet to proceed."
 		: "Get started by creating your own cooperative";
+  
+  const onCreateCooperative = () => {
+    const coreContractInstance = new ethers.Contract(addresses.epnscore, abis.epnscore, library);
+  }
 
 	return (
 		<section className={styles.landing__cover}>
@@ -28,7 +35,6 @@ export default function Index() {
 				<h3>{submittedText}</h3>
 
 				<form
-					onSubmit={handleSubmit}
 					className={styles.input__group}
           action="javascript:void(0)"
 				>
@@ -40,8 +46,9 @@ export default function Index() {
             ) : (
             <button
               type="submit"
-              disabled={state.submitting}
+              disabled={loading}
               className="--filled"
+              onClick={onCreateCooperative}
             >
               <p>Create Cooperative</p>
             </button>
