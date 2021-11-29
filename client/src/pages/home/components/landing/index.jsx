@@ -1,15 +1,14 @@
-import Image from "next/image";
+import React, { useState } from 'react';
 
-import BgCream from 'public/images/small-landingbackground.png'
+import BgCream from '../../../../assets/small-landingbackground.png'
 
-import LeftArrow from "/public/images/leftarrow.svg";
+import LeftArrow from "../../../../assets/leftarrow.svg";
 import styles from "./landing.module.scss";
-import { useForm } from "@formspree/react";
 
 
 
 export default function Index() {
-  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_REGISTERATION);
+  const [state, handleSubmit] = useState('');
   const submittedStyle = state.succeeded ? { visibility: 'hidden' } : {};
   const submittedText = state.succeeded ? "Thank you! we will be in touch" : "Get notified when we launch";
   return (
@@ -43,7 +42,7 @@ export default function Index() {
                 <>
                   <span>GET NOTIFIED</span>
                   <div style={{transition:"300ms"}} className="image">
-                      <Image alt="left arrow" src={LeftArrow} />
+                      <img alt="left arrow" src={LeftArrow} />
                   </div>
                 </>
               ) : (
@@ -54,7 +53,7 @@ export default function Index() {
         </form>
       </div>
       <div className="--smallshow">
-        <Image alt="nice cream" src={BgCream} />
+        <img alt="nice cream" src={BgCream} />
       </div>
     </section>
   );

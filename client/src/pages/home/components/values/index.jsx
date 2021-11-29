@@ -1,17 +1,17 @@
-import Image from "next/image";
+import React from 'react';
 import  {
     Completeness,
     Purity,
     Confidence
 } from './assets';
-import FemaleImage from "public/images/female.png";
+import FemaleImage from "../../../../assets/female.png";
 import styles from "./values.module.scss";
 
 export default function index() {
   return (
     <div className={styles.values}>
       <div className={styles.imagewrapper}>
-        <Image alt="femaleimage" src={FemaleImage} />
+        <img alt="femaleimage" src={FemaleImage} />
       </div>
       <div className={styles.textwrapper}>
         <p>OUR VALUES</p>

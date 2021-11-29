@@ -2,9 +2,9 @@ import React from 'react';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 
-// import Landing from './components/landing';
-// import Process from './components/process';
-// import Values from './components/values';
+import Landing from './components/landing';
+import Process from './components/process';
+import Values from './components/values';
 
 export default function Home() {
   return (
@@ -14,15 +14,15 @@ export default function Home() {
         {/* the navbar */}
 
         {/* the landing page */}
-        {/* <Landing /> */}
+        <Landing />
         {/* the landing page */}
 
         {/* the process page */}
-        {/* <Process /> */}
+        <Process />
         {/* the process page */}
 
         {/* the values page */}
-        {/* <Values /> */}
+        <Values />
         {/* the values page */}
 
         {/* the footer page */}
