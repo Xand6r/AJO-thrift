@@ -17,7 +17,7 @@ const networkDeployed = 4; //for the rinkeyby network;
 export default function Index({onClose}) {
     const modalRef = React.useRef(null);
 	const [loading, setLoading] = React.useState(false);
-	const { library, active, error, account } = useWeb3React();
+	const { library, error, account } = useWeb3React();
 	const [state, setState] = React.useState(INITIAL_STATE);
 	const changeState = (e) => {
 		const { name, value } = e.target;
@@ -70,7 +70,7 @@ export default function Index({onClose}) {
             toast.info("Transaction submitting!");
             await tx.wait(1);
             toast.success("Cooperative sucesfully created");
-            // get the contract creates by this user
+            // get the contract creates by this user,
             const cooperativeAddress = await deployerContractInstance.creatorToCooperative(account);
             console.log({
                 cooperativeAddress

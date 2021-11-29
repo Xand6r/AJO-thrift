@@ -1,6 +1,6 @@
-@import "../../../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 
-.create-modal-overlay{
+.invite-modal-overlay{
     position: fixed;
     top: 0;
     left: 0;
@@ -10,9 +10,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
 }
 
-.create-modal{
+.invite-modal{
     font-family: 'Helvetica Neue';
     // width: ;
     background-color: white;
@@ -24,7 +25,7 @@
         font-weight: 500;
         margin-bottom: 20px;
     }
-    .create-modal-inner{
+    .invite-modal-inner{
         padding: 27px 42px;
         border-radius: 10px;
         background-color: #D8E8D4;

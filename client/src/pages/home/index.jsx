@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 
 import Landing from './components/landing';
@@ -9,9 +8,6 @@ import Values from './components/values';
 export default function Home() {
   return (
     <div>
-        {/* the navbar */}
-        <NavBar />
-        {/* the navbar */}
 
         {/* the landing page */}
         <Landing />

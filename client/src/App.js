@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Web3ReactProvider } from "@web3-react/core";
 import { ToastContainer } from 'react-toastify';
 
+import NavBar from './components/navbar';
 import HomePage from "./pages/home";
 import Cooperative from "./pages/cooperative";
 import LostPage from "./pages/lost";
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <div>
       <Web3ReactProvider  getLibrary={getLibrary}>
+        <NavBar />
         <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<HomePage />} />
