@@ -1,6 +1,5 @@
 import React from "react";
 import ConnectButton from "../../components/connect";
-import MetaMask from "../../assets/metamask.svg";
 import styles from "./navbar.module.scss";
 
 const walletAddress = false;
