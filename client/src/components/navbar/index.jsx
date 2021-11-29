@@ -10,7 +10,7 @@ export default function Index() {
             </div>
             {/* logo on small screens */}
             <div className={styles.header__logo__small}>
-                <h5>AJO</h5>
+                <h4>THE COOPERATIVE</h4>
             </div>
         </nav>
     )

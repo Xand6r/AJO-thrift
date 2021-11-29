@@ -8,6 +8,9 @@
     align-items: center;
     color: white;
     font-family: 'Helvetica Neue';
+    h4{
+        font-family: 'Darker Grotesque', sans-serif;
+    }
 
     @media (max-width: $sm-breakpoint) {
         padding: 0;
