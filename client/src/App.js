@@ -3,19 +3,17 @@ import {ethers} from 'ethers';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Web3ReactProvider } from "@web3-react/core";
 import { ToastContainer } from 'react-toastify';
+
 import HomePage from "./pages/home";
+import Cooperative from "./pages/cooperative";
+import LostPage from "./pages/lost";
+
 import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
   function getLibrary(provider) {
     const gottenProvider = new ethers.providers.Web3Provider(provider, "any"); // this will vary according to whether you use e.g. ethers or web3.js
-    // adding this is important to deal with changing networks
-    gottenProvider.on("network", (_, oldNetwork) => {
-    //   if (oldNetwork) {
-    //     window.location.reload();
-    //   }
-    });
     return gottenProvider;
   }
   return (
@@ -24,6 +22,8 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<HomePage />} />
+            <Route path="/cooperative/:address" exact element={<Cooperative />} />
+            <Route path="*" exact element={<LostPage />} />
           </Routes>
         </BrowserRouter>
       </Web3ReactProvider>
