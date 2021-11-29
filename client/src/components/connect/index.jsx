@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from 'react-toastify';
 import { useEagerConnect, useInactiveListener } from "../../hooks";
 import { useWeb3React } from "@web3-react/core";
 
@@ -24,10 +25,24 @@ export default function Index() {
 	// handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
 	useInactiveListener(!triedEager || !!activatingConnector);
 
+    React.useEffect(() => {
+        if(!error) return;
+        let message;
+        if(error.name === "UnsupportedChainIdError"){
+            message = "Unsupported network, please connect to Ropsten network"
+        }else{
+            message = error.message;
+        }
+        toast.error(message, {
+            position: "top-left",
+        });
+    }, [error]);
+
 	const connectWalletPressed = () => {
 		setActivatingConnector(injected);
 		activate(injected);
 	};
+    console.log(error);
 
 	return (
 		<div className="metamask__window">
