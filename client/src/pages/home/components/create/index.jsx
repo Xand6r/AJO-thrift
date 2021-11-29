@@ -17,7 +17,7 @@ const networkDeployed = 4; //for the rinkeyby network;
 export default function Index({onClose}) {
     const modalRef = React.useRef(null);
 	const [loading, setLoading] = React.useState(false);
-	const { library, active, error } = useWeb3React();
+	const { library, active, error, account } = useWeb3React();
 	const [state, setState] = React.useState(INITIAL_STATE);
 	const changeState = (e) => {
 		const { name, value } = e.target;
@@ -35,7 +35,7 @@ export default function Index({onClose}) {
         }
     });
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
 		if (
 			!state.numberOfUsers ||
 			!state.contributionAmount ||
@@ -54,26 +54,39 @@ export default function Index({onClose}) {
 				position: "top-left",
 			});
 		}
-		try {
-			setLoading(true);
-			// actual submit
-			const coreContractInstance = new ethers.Contract(
-				FactoryContract.networks[networkDeployed].address,
-				FactoryContract.abi,
-				library
-			);
-			// call method to create cooperation
-			console.log(coreContractInstance);
-		} catch (err) {
-			toast.error(err.message);
-		} finally {
-			setLoading(false);
-		}
+        setLoading(true);
+        // actual submit
+        const deployerContractInstance = new ethers.Contract(
+            FactoryContract.networks[networkDeployed].address,
+            FactoryContract.abi,
+            library.getSigner(account)
+        );
+        // call method to create cooperation
+        await deployerContractInstance.createCooperative(
+            state.numberOfUsers,
+            ""+state.contributionAmount * (1 * 10**18),
+            state.duration
+        ).then(async (tx) => {
+            toast.info("Transaction submitting!");
+            await tx.wait(1);
+            toast.success("Cooperative sucesfully created");
+            // get the contract creates by this user
+            const cooperativeAddress = await deployerContractInstance.creatorToCooperative(account);
+            console.log({
+                cooperativeAddress
+            });
+            // "0xAFB1B1E83a9fa091b9Efd8EC6C6800Fcb16aF8DA"
+            onClose();
+        }).catch((err) => {
+            toast.error(err.message);
+        }).finally(() => {
+            setLoading(false);
+        });
 	};
 
 	return (
-		<div ref={modalRef} className="create-modal-overlay">
-			<div className="create-modal">
+		<div className="create-modal-overlay">
+			<div  ref={modalRef} className="create-modal">
 				<h3 className="create-modal-title">Create Cooperative</h3>
 				<div className="create-modal-inner">
 					<div className="modal-input-group">
