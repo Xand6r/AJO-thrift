@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-import BgCream from "../../../../assets/small-landingbackground.png";
-
-import LeftArrow from "../../../../assets/leftarrow.svg";
 import styles from "./landing.module.scss";
 
 export default function Index() {

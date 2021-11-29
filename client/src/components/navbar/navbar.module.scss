@@ -1,39 +1,79 @@
 @import "../../styles/variables.scss";
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Darker+Grotesque:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Darker+Grotesque:wght@700&display=swap");
 
-.header{
-    width: 100%;
-    background-color: $ionic-ivory;
-    padding: 1.5625rem 3.75rem;
-    @media (max-width: $sm-breakpoint) {
-        padding: 24px auto;
-    }
+.header {
+  width: 100%;
+  background-color: $ionic-ivory;
+  padding: 1.5625rem 3.75rem;
+  position: relative;
+  @media (max-width: $sm-breakpoint) {
+    padding: 24px auto;
+  }
 }
 
-.header__logo__big{
-    margin: 0 auto;
-    width: fit-content;
-    h2{
-        color: $dark-green;
-        font-family: 'Darker Grotesque', sans-serif;
-    }
+.header__logo__big {
+  margin: 0 auto;
+  width: fit-content;
+  h2 {
+    color: $dark-green;
+    font-family: "Darker Grotesque", sans-serif;
+  }
 
-    @media (max-width: $sm-breakpoint) {
-        display: none;
-    }
-}
-
-
-.header__logo__small{
-    margin: 0 auto;
-    width: fit-content;
+  @media (max-width: $sm-breakpoint) {
     display: none;
-    h5{
-        color: $dark-green;
-        font-family: 'Darker Grotesque', sans-serif;
-    }
+  }
+}
 
-    @media (max-width: $sm-breakpoint) {
-        display: inherit;
-    }
+.header__logo__small {
+  margin: 0 auto;
+  width: fit-content;
+  display: none;
+  h5 {
+    color: $dark-green;
+    font-family: "Darker Grotesque", sans-serif;
+  }
+
+  @media (max-width: $sm-breakpoint) {
+    display: inherit;
+  }
+}
+
+.metamask__window {
+  position: absolute;
+  right: 100px;
+  top: 30px;
+
+  /* wallet button styles */
+  #walletButton {
+    text-align: right;
+    margin-bottom: 50px;
+    line-height: 16px;
+    display: flex;
+    max-height: unset;
+    padding: 7px 50px;
+    border: 2px solid $dark-green;
+    color: $dark-green;
+    box-shadow: none;
+    margin-bottom: 0;
+    border-radius: 10px;
+    background-color: #F3EFE2;
+    transition: ease-in 200ms;    
+  }
+
+  #walletButton.--active {
+    background-color: $dark-green;
+    color: white;
+  }
+
+  #walletButton:hover {
+    background-color: #014C37;
+    color: white;
+  }
+
+  #walletButton img {
+    height: 35px;
+    margin-right: 8px;
+    transition: ease-in 200ms;
+  }
+  /* wallet button styles */
 }
