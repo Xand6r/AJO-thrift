@@ -3,6 +3,7 @@
 
 **Description**: The project stems from a tradition common in africa where a certain number of people contribute money on a monthly basis and give the lump sum to a member of the group, this contribution goes on a monthly basis until every memner of the group has gotten a turn in recieving the lump sum.
 
+**Walkthrough**: https://www.loom.com/share/4be9fea26f994190ba0f3ee66538f535?focus_title=1&muted=1&from_recorder=1
 
 ### Cooperative Contract Example Workflow
 
