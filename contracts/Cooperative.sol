@@ -232,7 +232,7 @@ contract Cooperative {
 
     /// @notice Initialise all the registered users of a cooperative
     /// @dev we use this to initialise the state of the users in the contract.
-    function initialiseUsers() internal hasNotStarted onlyOwner {
+    function initialiseUsers() internal hasNotStarted {
         for (uint256 i = 0; i < userCount; i++) {
             address oneUser = users[i];
             User memory newUser = User({

@@ -2,7 +2,6 @@ const path = require("path");
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const {mnemonic, infuraApiKey} = require('./keys.json');
 
-console.log({mnemonic, infuraApiKey});
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
