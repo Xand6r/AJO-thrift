@@ -3,8 +3,8 @@
 
 **Description**: The project stems from a tradition common in africa where a certain number of people contribute money on a monthly basis and give the lump sum to a member of the group, this contribution goes on a monthly basis until every memner of the group has gotten a turn in recieving the lump sum.
 
-**Walkthrough**: https://www.loom.com/share/4be9fea26f994190ba0f3ee66538f535?focus_title=1&muted=1&from_recorder=1
-
+**DAPP Walkthrough**: https://www.loom.com/share/4be9fea26f994190ba0f3ee66538f535?focus_title=1&muted=1&from_recorder=1
+**DAPP URL**: https://vigorous-ramanujan-3da9d5.netlify.app/
 ### Cooperative Contract Example Workflow
 
 This Project involves the development of a cooperative society on the blockchain, in which several parties pool resources together several times, and each time th epooled funds are given to a random user(No user would be chosen twice), it ends when all users have gottena turn
