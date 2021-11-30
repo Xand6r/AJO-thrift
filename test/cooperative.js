@@ -1,4 +1,10 @@
 const Cooperative = artifacts.require("Cooperative.sol");
+/**
+ * This test essentially works across the key features of the cooperative
+ * 1) To deploy and instantiate a new contract correctly
+ * 2) The person who instantiated the contract should be the one who owns the contract(This is important because i use a deployer pattern)
+ * 3) Then the key features, which mean that the contract should be initialised and new users can be invited.
+ */
 
 const maxUsers = 3;
 const contributionInEther = '10000000000000000000';

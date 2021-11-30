@@ -1,6 +1,10 @@
 const CooperativeFactory = artifacts.require("CooperativeFactory.sol");
 const Cooperative = artifacts.require("Cooperative.sol");
 
+/**
+ * This essentially tests for if the deployer works fine as planned and the variables instantiated are the ones existing on the contract
+ */
+
 contract("CooperativeFactory", accounts => {
   it("It should deploy a cooperative contract correctly!", async () => {
     const cooperativeFactory = await CooperativeFactory.deployed();
