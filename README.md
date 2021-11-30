@@ -69,6 +69,7 @@ The following commands are used for running the client:
 - `cd client`
 - `yarn install`
 - `yarn start`
+- Connect your metamask to the rinkeby network
 
 ### Running Contracts tests Locally
 The following commands are used to run the tests:
@@ -81,7 +82,7 @@ The following commands are used to run the tests:
 - Set the correct port number for the development blockchain in the truffle-config.js file.
 - Run the `truffle migrate` development command to deploy smart contract to local testnet.
 
-### To deploy the contract to a test net
+### To deploy the contract to a testnet(rinkeby)
 
 - `git clone https://github.com/xand6r/blockchain-developer-bootcamp-final-project.git` 
 - Run the `yarn install` command to install all the package dependencies
