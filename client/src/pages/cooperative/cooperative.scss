@@ -4,13 +4,15 @@
     font-family: 'Helvetica Neue';
 
     &__body{
-        padding: 0 70px;
+        padding: 0 100px;
         margin-top : 100px;
         display: flex;
         justify-content: space-between;
 
         .left__balance{
             h2{
+                margin-top: 0;
+                margin-bottom: 0;
                 margin-left:-5px;
             }
             .pretext{
@@ -26,7 +28,7 @@
                     margin-right: 5px;
                     cursor: pointer;
                     svg{
-                        vertical-align: bottom;
+                        vertical-align: text-top;
                         width: 14px;
                         height: 14px;
                     }
@@ -42,16 +44,45 @@
         }
 
         .right__actions{
+            display: flex;
+            flex-direction: column;
             &__actions{
-                button{
-                    &.--lined{
-                        background: white;
-                    }
+                span{
+                    font-size: 13px;
+                    display: inline-block;
+                    margin-bottom: 4px;
                 }
-                display: flex;
-                align-items: center;
-                gap: 20px;
+                .buttons{
+                    button{
+                        &.--lined{
+                            background: white;
+                        }
+                    }
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                }
+                .information{
+                    background-color: #F3EFE2;
+                    padding: 7px 20px;
+                    margin-top: 10px;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    color: $dark-green;
+                    justify-content: center;
+                    font-weight: 500;
+                }
             }
         }
+    }
+
+    &__table{
+        h3{
+            text-align: center;
+        }
+        padding: 0 100px;
+        margin-top: 100px;
+        margin-bottom: 50px;
     }
 }

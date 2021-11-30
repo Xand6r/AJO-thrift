@@ -1,20 +1,58 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import Skeleton from "react-loading-skeleton";
 import Loader from "react-loader-spinner";
-
+import 'antd/dist/antd.css';
 import Invite from "./invite";
 
 import CooperativeContract from "../../contracts/Cooperative.json";
 import { EyeClosed, EyeOpen } from "./assets";
+import { Table, Tag } from 'antd';
 
 import "./cooperative.scss";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const networkDeployed = 4; //for the rinkeyby network;
+var randomColor = require('randomcolor'); // import the script
+
+const dataSource = [
+    {
+      key: '1',
+      info: 'claimed',
+      role: "claimer",
+      address: '0x02b24AC2239b344FbC4577801f7000901E7a3944',
+    }
+  ];
+  
+  const columns = [
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+      render: (tag) => {
+        return (
+            <Tag color={randomColor({seed: tag})} key={tag}>
+              {tag.toUpperCase()}
+            </Tag>
+          );
+      }
+    },
+    {
+      title: 'Role',
+      dataIndex: 'role',
+      key: 'role',
+    },
+    {
+      title: 'Information',
+      dataIndex: 'info',
+      key: 'info',
+    },
+  ];
+
+const format = "DD-MM-YY";
 const zeroAddress = 0x0000000000000000000000000000000000000000;
 export default function Index() {
 	const navigate = useNavigate();
@@ -28,12 +66,13 @@ export default function Index() {
 	const [roundRole, setRoundRole] = useState("");
 	const [amount, setAmount] = useState(0);
 	const [balance, setBalance] = useState(0);
-    const [maxUsers, setMaxUsers] = useState(0);
+	const [maxUsers, setMaxUsers] = useState(0);
 
-	const [paidForRound, setPaidForRound] = useState(false);
-	const [isFull, setIsFull] = useState(false);
 	const [userRatio, setUserRatio] = useState("");
 	const [status, setStatus] = useState("");
+	const [dueDate, setDueDate] = useState("");
+    const [round, setRound] = useState(0);
+    const [tableData, setTableData] = useState([]);
 
 	const { library, error, account, active } = useWeb3React();
 
@@ -57,6 +96,24 @@ export default function Index() {
 		}
 	}, [address, library, account]);
 
+    async function fetchAllUsers(maxUser) {
+        console.log(maxUsers);
+        const userInfoPromises = [...Array(+maxUser).keys()].map(async (userIndex) => {
+            const address = await contract.users(userIndex);
+            const userInfo = await contract.userSettings(address);
+            console.log({address, userInfo});
+            // alert(address);
+            return {
+                key: userIndex,
+                address,
+                role: userInfo.roundRole == 1 ? "DEPOSITOR" : "CLAIMER",
+                info: userInfo.roundRole == 1 ? (userInfo.paidForRound ? "DEPOSITED" : "NOT DEPOSITED") : (userInfo.claimed ? "CLAIMED" : "NOT CLAIMED")
+            }
+        });
+        const userInfo = await Promise.all(userInfoPromises);
+        setTableData(userInfo);
+    }
+
 	useEffect(() => {
 		if (!contract) return;
 		(async function () {
@@ -71,7 +128,6 @@ export default function Index() {
 			const {
 				roundRole: lrR,
 				nextExpectedDepositDate,
-				...userSettings
 			} = await contract.userSettings(account);
 			const userCount = (await contract.userCount()).toString();
 			const maxUser = (await contract.maxUsers()).toString();
@@ -80,6 +136,9 @@ export default function Index() {
 			).toString();
 			const cooperativestatus = (await contract.status()).toString();
 			const balance = (await contract.getBalance()).toString();
+            const round = (await contract.currentRound()).toString();
+
+            setRound(round);
 			setStatus(
 				cooperativestatus == 0
 					? "initialised"
@@ -87,24 +146,21 @@ export default function Index() {
 					? "started"
 					: "ended"
 			);
-			console.log({ cooperativestatus });
-			const userRatio = `${userCount}/${maxUser}`;
-            setMaxUsers(maxUser);
+			const userRatio = `${userCount} out of ${maxUser} joined`;
+			setMaxUsers(maxUser);
 			setBalance(balance);
 			setAmount(contribAmount);
 			setUserRatio(userRatio);
 			setRoundRole(lrR.toString() == 0 ? "claimer" : "depositor");
+			setDueDate(
+				moment(new Date(+nextExpectedDepositDate.toString() * 1000)).format(format)
+			);
 
-			// console.log({
-			//     userSettings,
-			//     nextExpectedDepositDate: nextExpectedDepositDate.toString()
-			// });
-			// fetch info about this user to tell if its a claimer or depositor
-			// fetch current pool balance
-			// fetch number of users
+            fetchAllUsers(maxUser);
 			return;
 		})()
-			.then(() => {})
+			.then(() => {
+            })
 			.catch((err) => {
 				toast.error(err.message);
 			})
@@ -113,7 +169,6 @@ export default function Index() {
 			});
 	}, [contract]);
 
-	console.log({ amount });
 
 	useEffect(() => {
 		if (!blocked) return;
@@ -134,7 +189,7 @@ export default function Index() {
 					// get the contract creates by this user,
 				})
 				.catch((err) => {
-					console.log({ err });
+					// console.log({ err });
 					toast.error(err.error.message);
 				})
 				.finally(() => {
@@ -166,11 +221,15 @@ export default function Index() {
 						<h2>
 							{privacy
 								? "****"
-								: ethers.utils.formatEther(balance) + "Ethers"
-                                }
+								: ethers.utils.formatEther(balance) + "Ethers"}
 						</h2>
 						<div className="posttext">
-							{privacy ? "****" : `out of ${ethers.utils.formatEther(amount) * (+maxUsers - 1)} Ethers`}
+							{privacy
+								? "****"
+								: `out of ${
+										ethers.utils.formatEther(amount) *
+										(+maxUsers - 1)
+								  } Ethers`}
 						</div>
 					</div>
 				) : (
@@ -196,37 +255,45 @@ export default function Index() {
 					<div className="right__actions">
 						<div className="right__actions__info"></div>
 						<div className="right__actions__actions">
-							{status === "started" ? (
-								<button
-									className="--filled"
-									disabled={
-										status === "ended" ||
-										(roundRole == "depositor" &&
-											paidForRound)
-									}
-									onClick={userAction}
-								>
-									{txLoading ? (
-										<Loader
-											type="Puff"
-											color="#fff"
-											height={20}
-											width={20}
-										/>
-									) : roundRole === "claimer" ? (
-										"Claim Pool"
-									) : (
-										"Deposit Funds"
-									)}
-								</button>
-							) : (
-								<button
-									onClick={() => setModalOpen(true)}
-									className="--lined"
-								>
-									Invite Member
-								</button>
-							)}
+                            {
+                                status === "started" && (
+                                    <span><i>Next due date: {dueDate}</i></span>
+                                )
+                            }
+							<div className="buttons">
+								{status === "started" ? (
+									<button
+										className="--filled"
+										disabled={status === "ended"}
+										onClick={userAction}
+									>
+										{txLoading ? (
+											<Loader
+												type="Puff"
+												color="#fff"
+												height={20}
+												width={20}
+											/>
+										) : roundRole === "claimer" ? (
+											"Claim Pool"
+										) : (
+											"Deposit Funds"
+										)}
+									</button>
+								) : (
+									<button
+										onClick={() => setModalOpen(true)}
+										className="--lined"
+									>
+										Invite Member
+									</button>
+								)}
+							</div>
+							<div className="information">
+								{status == "initialised"
+									? userRatio
+									: status.toUpperCase()}
+							</div>
 						</div>
 					</div>
 				) : (
@@ -236,6 +303,12 @@ export default function Index() {
 				)}
 			</div>
 			{/* the body */}
+            {/* the footer */}
+            <div className="single-cooperative__table">
+                <h3>Activity For round - {round}</h3>
+                <Table dataSource={tableData} columns={columns} />
+            </div>
+            {/* the footer */}
 			{modalOpen && (
 				<Invite
 					onClose={() => {
