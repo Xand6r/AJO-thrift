@@ -22,13 +22,13 @@ export default function Index() {
                     <Tab
                         ImageItem={Nature}
                         heading="Inspired by decentralisation"
-                        text="Start by connecting your metamask wallet, then creating a cooperative on this page and specifying several characteristics of the cooperative"
+                        text="Start by connecting your metamask wallet, then creating a cooperative on this page and specifying several characteristics of the cooperative."
                     />
                     <div className={styles.vertical__line} />
                     <Tab
                         ImageItem={Formulation}
                         heading="Driven by peers"
-                        text="The next step is to invite peers to your cooperative, participation is by invitation only and each member is entitled to only one invitation."
+                        text="The next step is to invite peers to your cooperative, participation is by invitation only and each member is entitled to only one invitation. so when you invite one account, that account can invite another account, and so on, until limit is reached and the funds pooling can start"
                     />
                 </div>
                 <div className={styles.horizontal__line} />

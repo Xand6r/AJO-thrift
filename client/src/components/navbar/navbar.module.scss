@@ -17,6 +17,8 @@
   h2 {
     color: $dark-green;
     font-family: "Darker Grotesque", sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   @media (max-width: $sm-breakpoint) {
@@ -28,9 +30,11 @@
   margin: 0 auto;
   width: fit-content;
   display: none;
-  h5 {
+  h4 {
     color: $dark-green;
     font-family: "Darker Grotesque", sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   @media (max-width: $sm-breakpoint) {

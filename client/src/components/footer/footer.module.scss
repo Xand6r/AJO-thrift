@@ -1,6 +1,9 @@
 @import "../../styles/variables.scss";
 
 .footer{
+    *{
+        color: white;
+    }
     background-color: $dark-green;
     padding: 4.1875rem 7.125rem;
     display: flex;
@@ -9,6 +12,7 @@
     color: white;
     font-family: 'Helvetica Neue';
     h4{
+        color: white;
         font-family: 'Darker Grotesque', sans-serif;
     }
 

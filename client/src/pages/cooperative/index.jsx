@@ -74,7 +74,7 @@ export default function Index() {
     const [round, setRound] = useState(0);
     const [tableData, setTableData] = useState([]);
 
-	const { library, error, account, active } = useWeb3React();
+	const { library, account, active } = useWeb3React();
 
 	// fetch and save the contract
 	useEffect(() => {
@@ -196,6 +196,20 @@ export default function Index() {
 					setLoading(false);
 				});
 		} else {
+            await contract.claim()
+            .then(async (tx) => {
+                toast.info("Transaction submitting!");
+                await tx.wait(1);
+                toast.success("Funds have been Claimed");
+                // get the contract creates by this user,
+            })
+            .catch((err) => {
+                // console.log({ err });
+                toast.error(err.error.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
 		}
 
 		setTxLoading(false);
@@ -305,8 +319,22 @@ export default function Index() {
 			{/* the body */}
             {/* the footer */}
             <div className="single-cooperative__table">
-                <h3>Activity For round - {round}</h3>
-                <Table dataSource={tableData} columns={columns} />
+                {
+                    loading ? (
+                        <Skeleton count={20} />
+                    ) : (
+                        <>
+                        {
+                            status == "initialised" ? (
+                                <h3>Use the accounts you invited to invite other accounts(One account per invite), until we have reached the maximum number of users</h3>
+                            ):(
+                                <h3>Activity For round - {round}</h3>
+                            )
+                        }
+                            <Table dataSource={tableData} columns={columns} />
+                        </>
+                    )
+                }
             </div>
             {/* the footer */}
 			{modalOpen && (

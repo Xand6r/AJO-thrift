@@ -75,7 +75,7 @@ export default function Index() {
 									setShowModal(true);
 								}}
 							>
-								<p>Create Cooperative</p>
+								<p style={{marginBottom: 0}}>Create Cooperative</p>
 							</button>
 						)}
 					</form>
