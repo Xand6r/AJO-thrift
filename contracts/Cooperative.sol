@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0
 /// @author Shuaibu Alexander
 /// @title A cooperative Contract
+/// @notice This is a cooperative function, it facilitates group savings
+///          and then disburses this savings to members one at a time as if they were taking a loan
 pragma solidity ^0.8.3;
 // import "hardhat/console.sol";
 
@@ -167,6 +169,7 @@ contract Cooperative {
     /**
      * @dev a function used to assign due dates for others
      * @param numberOfUnits the number of days in which  we want to move foward by (in uints of the frequency of payment of the cooperative)
+     * @return It returns the time from now, in timestamp but in units of the specified interval of the contribution 
      **/
     function _unitTimeFromNow(uint256 numberOfUnits)
         private
@@ -178,6 +181,8 @@ contract Cooperative {
 
     /**
      * @dev a function used to offset dates from the creation date by a facrot of the frequency of payments of the contracts
+     * @param numberOfUnits the number of days in which  we want to move foward by (in uints of the frequency of payment of the cooperative)
+     * @return It returns the time from the creation date, in timestamp but in units of the specified interval of the contribution 
      **/
     function _offsetCreationDate(uint256 numberOfUnits)
         private
@@ -217,10 +222,10 @@ contract Cooperative {
         //initialise state variables
     }
 
-    /*
-     * Functions of the contract
+    /**
+     * @notice Functions of the contract
+     * @return The current balance of this smart contract
      */
-    // function to return the balance of the contract
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
@@ -284,7 +289,8 @@ contract Cooperative {
     }
 
     ///
-    /// @notice Allows a user to claim the pooled funds for him
+    /// @notice Allows a user to claim the pooled funds for himself
+    /// @dev added extra security to refund the user should they for any reason make more deposit than they should
     ///
     function claim() public isMember hasStarted canClaim {
         // if all conditions pass, then send the user the right ether
@@ -345,7 +351,8 @@ contract Cooperative {
     }
 
     ///
-    /// @notice return a boolen which indicates if the sending user can claim their pool
+    /// @notice is used to check if the sender of the message can claim funds from the pool
+    /// @return return a boolen which indicates if the sending user can claim their pool
     ///
     function canClaimPool() public view isMember returns (bool) {
         User memory oneUser = userSettings[msg.sender];

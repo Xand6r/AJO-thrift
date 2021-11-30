@@ -11,6 +11,7 @@ contract CooperativeFactory is Ownable{
     address[] public createdCooperatives;
     mapping(address => address) public creatorToCooperative;
 
+    /// @notice This function is used to deploy a cooperative contract which would hold all the details about the cooperative
     function createCooperative(
         uint _maxUsers,
         uint _contributionInEther,
@@ -23,7 +24,8 @@ contract CooperativeFactory is Ownable{
         creatorToCooperative[msg.sender] = newCooperative;
         return newCooperative;
     }
-
+    /// @notice This method is used to get every single cooperative created in the contract
+    /// @return createdCooperatives which is an array of addresses of deployed contributions
     function getAllContributions() public view returns(address[] memory){
         return createdCooperatives;
     }
