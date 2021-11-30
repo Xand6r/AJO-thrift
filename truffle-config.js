@@ -12,11 +12,6 @@ module.exports = {
     develop: {
       port: 8545
     },
-    test: {
-      host: "localhost",
-      port: 7545,
-      network_id: "*" // Match any network id
-    },
     rinkeby: {
       networkCheckTimeout: 10000,
       confirmations: 10,

@@ -80,3 +80,13 @@ The following commands are used to run the tests:
 - Run the `truffle test` command to run all the unit tests.
 - Set the correct port number for the development blockchain in the truffle-config.js file.
 - Run the `truffle migrate` development command to deploy smart contract to local testnet.
+
+### To deploy the contract to a test net
+
+- `git clone https://github.com/xand6r/blockchain-developer-bootcamp-final-project.git` 
+- Run the `yarn install` command to install all the package dependencies
+- Run the `truffle compile` command to compile the smart contract source code files.
+- In another terminal window, run the ganache-cli command to start a local blockchain for testing.
+- Run the `truffle test` command to run all the unit tests.
+- Create a file called `keys.json` and store your mnemonic and infura key, you can see a sample in `keys.sample.json`
+- Run the `truffle migrate --network rinkeby` development command to deploy smart contract to local testnet.
